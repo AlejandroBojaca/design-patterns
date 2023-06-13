@@ -6,20 +6,20 @@ class TravelStrategy {
   
   class WalkingStrategy extends TravelStrategy {
     travelTime(distance) {
-        throw new Error("This method must be overwritten!");
+        return `${distance / 5} hours`
       }
     }
   
   class CyclingStrategy extends TravelStrategy {
     travelTime(distance) {
-        throw new Error("This method must be overwritten!");
-      }
+      return `${distance / 30} hours`
+    }
   }
   
   class DrivingStrategy extends TravelStrategy {
     travelTime(distance) {
-        throw new Error("This method must be overwritten!");
-      }
+      return `${distance / 80} hours`
+    }
   }
   
   class Traveler {
@@ -28,8 +28,11 @@ class TravelStrategy {
     }
   
     travel(distance) {
-      // Implement this
+      return this.strategy.travelTime(distance)
     }
   }
   
-  const traveler1 = new Traveler()
+  const traveler1 = new Traveler(new WalkingStrategy())
+  const travelTime = traveler1.travel(50)
+
+  console.log(travelTime)
